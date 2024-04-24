@@ -5,7 +5,7 @@ on:
 
 jobs:
   format:
-    name: Linter and Format Code
+    name: Build Docker
     runs-on: ubuntu-latest
 
     steps:
