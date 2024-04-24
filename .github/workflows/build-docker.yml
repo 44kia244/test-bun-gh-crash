@@ -13,14 +13,14 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Docker Build
-        run: docker build -t test-bun-gh-crash:${{ github.ref }} .
+        run: docker build -t test-bun-gh-crash:${GITHUB_SHA} .
         
       - name: Save as tar
-        run: docker save test-bun-gh-crash:${{ github.ref }} -o test-bun-gh-crash-${{ github.ref }}.tar
+        run: docker save test-bun-gh-crash:${GITHUB_SHA} -o test-bun-gh-crash.tar
 
       - uses: actions/upload-artifact@v4
         with:
-          name: test-bun-gh-crash-${{ github.ref }}
-          path: test-bun-gh-crash-${{ github.ref }}.tar
+          name: test-bun-gh-crash
+          path: test-bun-gh-crash.tar
           compression-level: 6
           retention-days: 1
