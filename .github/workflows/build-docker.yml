@@ -1,4 +1,4 @@
-name: 'Bun Install'
+name: 'Build Docker'
 
 on:
   workflow_dispatch:
