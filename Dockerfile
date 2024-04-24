@@ -7,6 +7,5 @@ WORKDIR /app
 COPY . .
 
 RUN bun install --production --ignore-scripts
-RUN bun run build
 
 CMD ["node","."]
