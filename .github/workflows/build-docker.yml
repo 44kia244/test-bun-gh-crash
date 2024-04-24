@@ -1,0 +1,26 @@
+name: 'Bun Install'
+
+on:
+  workflow_dispatch:
+
+jobs:
+  format:
+    name: Linter and Format Code
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Docker Build
+        run: docker build -t test-bun-gh-crash:${{ github.ref }} .
+        
+      - name: Save as tar
+        run: docker save test-bun-gh-crash:${{ github.ref }} -o test-bun-gh-crash-${{ github.ref }}.tar
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: test-bun-gh-crash-${{ github.ref }}
+          path: test-bun-gh-crash-${{ github.ref }}.tar
+          compression-level: 6
+          retention-days: 1
